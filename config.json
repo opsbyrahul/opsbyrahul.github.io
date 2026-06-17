@@ -1,0 +1,266 @@
+{
+  "personal": {
+    "name": "Rahul Venkatesh",
+    "title": "Senior Associate Consultant",
+    "company": "Infosys Limited",
+    "tagline": "DevOps & Platform Engineer",
+    "summary": "Cloud-focused DevOps Engineer with 6+ years of experience proficient in Azure, Kubernetes, Terraform, and automated CI/CD workflows. Seeking a role to implement scalable cloud solutions, streamline release cycles, and strengthen DevOps culture across teams.",
+    "email": "rahul.venkateshan@gmail.com",
+    "phone": "+91 7981111608",
+    "cv_filename": "Rahul-Venkatesh-CV.pdf"
+  },
+
+  "stats": [
+    { "value": "6+",  "label": "Years of Experience" },
+    { "value": "5",   "label": "Enterprise Clients Served" },
+    { "value": "90%", "label": "Reduction in Manual Deployment Effort" },
+    { "value": "2",   "label": "Companies — Infosys & Wipro" }
+  ],
+
+  "expertise": [
+    {
+      "category": "CI/CD & Automation",
+      "title": "Pipeline Design & Reusable Frameworks",
+      "tags": [
+        { "label": "Azure DevOps",      "primary": true },
+        { "label": "GitHub Actions",    "primary": true },
+        { "label": "Harness",           "primary": true },
+        { "label": "YAML Pipelines",    "primary": false },
+        { "label": "Reusable Templates","primary": false },
+        { "label": "GitLab CI/CD",      "primary": false }
+      ]
+    },
+    {
+      "category": "Infrastructure & Cloud",
+      "title": "Infrastructure as Code & Azure Services",
+      "tags": [
+        { "label": "Terraform",    "primary": true },
+        { "label": "Terragrunt",   "primary": true },
+        { "label": "ARM Templates","primary": true },
+        { "label": "Azure Cloud",  "primary": false },
+        { "label": "AKS",          "primary": false },
+        { "label": "Ansible",      "primary": false }
+      ]
+    },
+    {
+      "category": "Containers & Orchestration",
+      "title": "Kubernetes & Container Workloads",
+      "tags": [
+        { "label": "Kubernetes (AKS)", "primary": true },
+        { "label": "Helm Charts",      "primary": true },
+        { "label": "Docker",           "primary": true },
+        { "label": "Cluster Upgrades", "primary": false },
+        { "label": "DR Setup",         "primary": false }
+      ]
+    },
+    {
+      "category": "DevSecOps",
+      "title": "Security Integration & Code Quality",
+      "tags": [
+        { "label": "Veracode",      "primary": true },
+        { "label": "SonarQube",     "primary": true },
+        { "label": "Codecov",       "primary": true },
+        { "label": "SAST Scanning", "primary": false },
+        { "label": "New Relic",     "primary": false }
+      ]
+    },
+    {
+      "category": "Application Platforms",
+      "title": "Enterprise Integration & Deployment",
+      "tags": [
+        { "label": "Dynamics 365", "primary": true },
+        { "label": "Azure Functions","primary": true },
+        { "label": "Logic Apps",   "primary": true },
+        { "label": "ASB",          "primary": false },
+        { "label": "Dell Boomi",   "primary": false },
+        { "label": "Oracle CPQ / EBS","primary": false },
+        { "label": "Node.js",      "primary": false },
+        { "label": "Java",         "primary": false },
+        { "label": "ASP.NET",      "primary": false }
+      ]
+    },
+    {
+      "category": "Scripting & Developer Tools",
+      "title": "Automation & Developer Enablement",
+      "tags": [
+        { "label": "PowerShell",      "primary": true },
+        { "label": "Python",          "primary": true },
+        { "label": "GitHub Copilot",  "primary": true },
+        { "label": "Azure Repos",     "primary": false },
+        { "label": "VS Code",         "primary": false },
+        { "label": "Backstage",       "primary": false }
+      ]
+    }
+  ],
+
+  "experience": [
+    {
+      "period": "Jun 2023 – Sep 2025",
+      "company": "Infosys Limited",
+      "client": "Client: State Street",
+      "current": true,
+      "role": "Senior Associate Consultant — DevOps & Infra Engineer",
+      "environment": "GitHub · Azure DevOps · Harness · Azure",
+      "responsibilities": [
+        "Created and managed infrastructure for Project Nucleus using Terraform and Terragrunt in Azure DevOps.",
+        "Onboarded infrastructure for project modules including Postgres, AKS, Cosmos DB, and Storage Account.",
+        "Set up infrastructure for PoCs including Azure Form Recognizer, Event Grid, and Event Hub.",
+        "Configured CI/CD pipelines, Dockerfiles, and Helm Charts; deployed into AKS using Harness.",
+        "Enabled and tested disaster recovery setup for applications at the infrastructure level.",
+        "Created common code structure for rapid team onboarding.",
+        "Conducted PoC on self-service portal for application onboarding via web portal.",
+        "Performed AKS Cluster Upgrades and Postgres Version Upgrades."
+      ]
+    },
+    {
+      "period": "Jul 2023 – Jun 2024",
+      "company": "Wipro Technologies",
+      "client": "Client: Wesco",
+      "current": false,
+      "role": "Project Engineer — DevOps Engineer",
+      "environment": "GitHub · Azure DevOps",
+      "responsibilities": [
+        "Created CI/CD templates and configured them for multiple applications.",
+        "Integrated Codecov and Veracode for code quality and SAST scanning.",
+        "Analysed and created self-onboarding GitHub templates for Mule Soft components.",
+        "Set up CI/CD for the vendor application FlintFox Pricing and handled production deployment, reducing manual effort by 90%."
+      ]
+    },
+    {
+      "period": "Nov 2022 – Jul 2023",
+      "company": "Wipro Technologies",
+      "client": "Client: Manpower Group",
+      "current": false,
+      "role": "Project Engineer — Azure DevOps Engineer",
+      "environment": "Azure DevOps Service",
+      "responsibilities": [
+        "Conducted DevSecOps Maturity Assessment and created a plan for implementing best DevSecOps practices.",
+        "Created CI/CD pipelines and reusable templates deployable across multiple projects.",
+        "Performed production deployments for onboarded applications.",
+        "Created and managed ADO Organisations, Licences, services and users with monthly reporting.",
+        "Managed and administered tools including Veracode, SonarQube, and New Relic.",
+        "Created automation for user report management and de-provisioning of inactive users."
+      ]
+    },
+    {
+      "period": "Mar 2021 – Oct 2022",
+      "company": "Wipro Technologies",
+      "client": "Client: Metro Bank PLC",
+      "current": false,
+      "role": "Project Engineer — Azure DevOps Engineer",
+      "environment": "Azure DevOps Service (VSTS)",
+      "responsibilities": [
+        "Analysed and created new Azure DevOps architecture for Dynamics 365 CRM Solutions.",
+        "Synced Hotfix Dev and Dev environments automatically after successful deployment to QA environments.",
+        "Created reusable pipelines using YAML.",
+        "Deployed applications in QA and Prod environments (automated deployment).",
+        "Created Package Deployer setup in Azure DevOps Pipeline for Pre and Post Deployment steps.",
+        "Deployed CRM, Azure Functions, Azure Logic Apps, and Web Apps selectively at runtime.",
+        "Added automated PR creation and notification system for pipeline status.",
+        "Provisioned Azure components via ARM Templates through Azure Pipelines."
+      ]
+    },
+    {
+      "period": "Sep 2020 – Feb 2021",
+      "company": "Wipro Technologies",
+      "client": "Client: F5 Network",
+      "current": false,
+      "role": "Project Engineer — Azure DevOps Engineer",
+      "environment": "Azure DevOps Service (VSTS)",
+      "responsibilities": [
+        "Analysed existing architecture and created new Azure DevOps architecture for applications.",
+        "Created pipelines in Azure DevOps for applications including ASB, TEEMS, Dell Boomi, Oracle CPQ, SQL, Oracle EBS, and BI.",
+        "Created reusable YAML pipelines.",
+        "Deployed applications in QA and Prod servers.",
+        "Developed custom scripts to integrate Approval Gating in ServiceNow with Azure DevOps via Service Now API.",
+        "Created custom dashboards to track application versions and deployment dates.",
+        "Integrated Release Note Report Generation for applications."
+      ]
+    }
+  ],
+
+  "skills": [
+    {
+      "category": "Cloud Technologies",
+      "items": [
+        { "label": "Azure DevOps",     "primary": true },
+        { "label": "Microsoft Azure",  "primary": true },
+        { "label": "AKS",              "primary": false },
+        { "label": "Azure Functions",  "primary": false },
+        { "label": "Azure Logic Apps", "primary": false },
+        { "label": "Event Grid",       "primary": false },
+        { "label": "Event Hub",        "primary": false },
+        { "label": "Cosmos DB",        "primary": false }
+      ]
+    },
+    {
+      "category": "Infrastructure as Code",
+      "items": [
+        { "label": "Terraform",    "primary": true },
+        { "label": "Terragrunt",   "primary": true },
+        { "label": "ARM Templates","primary": true },
+        { "label": "Ansible",      "primary": false }
+      ]
+    },
+    {
+      "category": "Containers & GitOps",
+      "items": [
+        { "label": "Kubernetes", "primary": true },
+        { "label": "Helm",       "primary": true },
+        { "label": "Docker",     "primary": true },
+        { "label": "Harness",    "primary": false }
+      ]
+    },
+    {
+      "category": "Security & Quality",
+      "items": [
+        { "label": "Veracode",  "primary": true },
+        { "label": "SonarQube", "primary": true },
+        { "label": "Codecov",   "primary": true },
+        { "label": "New Relic", "primary": false }
+      ]
+    },
+    {
+      "category": "Version Control",
+      "items": [
+        { "label": "GitHub",      "primary": true },
+        { "label": "Azure Repos", "primary": true },
+        { "label": "GitLab",      "primary": false }
+      ]
+    },
+    {
+      "category": "Programming & Scripting",
+      "items": [
+        { "label": "PowerShell", "primary": true },
+        { "label": "Python",     "primary": true },
+        { "label": "Django",     "primary": false }
+      ]
+    },
+    {
+      "category": "Developer Tools",
+      "items": [
+        { "label": "VS Code",         "primary": true },
+        { "label": "Visual Studio",   "primary": true },
+        { "label": "GitHub Copilot",  "primary": false },
+        { "label": "Backstage",       "primary": false }
+      ]
+    }
+  ],
+
+  "strengths": [
+    "6+ years of Azure DevOps and cloud infrastructure experience",
+    "Delivered across 5 enterprise clients — State Street, Metro Bank, Manpower Group, Wesco, F5 Network",
+    "Reusable CI/CD framework design across multi-team environments",
+    "Infrastructure as Code with Terraform, Terragrunt, and ARM Templates",
+    "DevSecOps maturity assessment and security tooling integration",
+    "Kubernetes (AKS) cluster management, Helm chart deployment, and DR setup",
+    "AI-assisted development using GitHub Copilot"
+  ],
+
+  "education": [
+    {
+      "degree": "Bachelor of Technology in Mechanical Engineering",
+      "institution": "SVCET (JNTUA) — Jawaharlal Nehru Technological University Anantapur"
+    }
+  ]
+}
