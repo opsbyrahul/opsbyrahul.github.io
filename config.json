@@ -1,9 +1,9 @@
 {
   "personal": {
     "name": "Rahul Venkatesh",
-    "title": "Senior Associate Consultant",
+    "title": "Consultant",
     "company": "Infosys Limited",
-    "tagline": "DevOps & Platform Engineer",
+    "tagline": "DevSecOps & Platform Engineer",
     "summary": "Cloud-focused DevOps Engineer with 6+ years of experience proficient in Azure, Kubernetes, Terraform, and automated CI/CD workflows. Seeking a role to implement scalable cloud solutions, streamline release cycles, and strengthen DevOps culture across teams.",
     "email": "rahul.venkateshan@gmail.com",
     "phone": "+91 7981111608",
@@ -12,7 +12,7 @@
 
   "stats": [
     { "value": "6+",  "label": "Years of Experience" },
-    { "value": "5",   "label": "Enterprise Clients Served" },
+    { "value": "5+",   "label": "Enterprise Clients Served" },
     { "value": "90%", "label": "Reduction in Manual Deployment Effort" },
     { "value": "2",   "label": "Companies — Infosys & Wipro" }
   ],
