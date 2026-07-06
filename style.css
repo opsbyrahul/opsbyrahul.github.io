@@ -1,131 +1,4 @@
-
-Claude finished the response
-split the js and html also add a provision to add my cv download'
-
-
-Viewed 2 files, ran a command
-Viewed 2 files, ran a command
-Now let me add a CV download provision and wire the new file structure into index.html.
-
-
-Orchestrated HTML-JS separation and integrated CV download functionality
-Orchestrated HTML-JS separation and integrated CV download functionality
-Files look clean. Let me remove the old single-file version so there's one clear source of truth, and share the split project.
-
-
-Ran a command, read a file
-Ran a command, read a file
-Split into three files, plus a CV download provision:
-
-index.html — markup only, links to style.css and script.js
-style.css — all styling
-script.js — data (expertise/experience/skills arrays) + render logic + animations
-assets/README.txt — a note on where to drop your CV
-CV download: two "Download CV" buttons now exist — one in the hero, one in the contact section — both pointing to assets/Rahul-Venkatesh-CV.pdf with the download attribute. They won't 404 for the visitor unless a file is actually missing at deploy time, so just:
-
-Export your CV as a PDF
-Name it exactly Rahul-Venkatesh-CV.pdf
-Drop it in the assets/ folder next to index.html
-That's it — no code changes needed once the file's in place. When you deploy (GitHub Pages, Netlify, etc.), just make sure you upload the whole site/ folder, not just index.html, so the CSS, JS, and assets folder come along with it.
-
-
-Index
-Code · HTML 
-
-Style
-Code · CSS 
-
-Script
-JS 
-
-Readme
-TXT 
-devsecops pipeline animation piece is not looking good on mobile
-
-
-Check the current mobile pipeline styles before editing
-Check the current mobile pipeline styles before editing
-Found it — on mobile the stages just stack with no connector, so it reads as four floating pills rather than a pipeline. Let me give it a proper vertical timeline with a dashed connector, sized to fit small screens.
-
-
-Replace the weak mobile pipeline fallback with a proper vertical timeline with connecting line
-Replace the weak mobile pipeline fallback with a proper vertical timeline with connecting line
-Now let's confirm the JS still applies .active correctly to these stages (it targets .stage by class, so it'll work unchanged), and view the result.
-
-
-Ran 2 commands, read a file
-Ran 2 commands, read a file
-Fixed. On mobile, the pipeline now renders as a proper vertical timeline instead of four disconnected pills:
-
-Dashed connector runs down the left side linking each stage node, mirroring the horizontal dashed line on desktop
-Connector segments turn solid green as each stage activates, same logic as the desktop fill — just re-oriented
-Nodes shrink to 44px and the card padding tightens so it doesn't feel cramped on narrow screens
-Label text stays left-aligned next to its node, so it reads top-to-bottom like a real pipeline log rather than a stack of centered chips
-No changes needed in script.js — it just toggles .active on .stage elements, and the CSS handles the rest per breakpoint. Re-download style.css (linked above) and drop it back into your site/ folder.
-
-
-Style
-Code · CSS 
-devsecops pipeline animation piece is not looking good on mobile
-
-
-Thought for 4s
-Thought for 4s
-Since I can't preview it on an actual device, guessing again risks missing the real issue. Could you tell me more specifically what's wrong — or better, share a screenshot?
-
-A few things it could be:
-
-Text/labels overlapping the connector line
-Circles too small/large or misaligned with the dashed line
-Spacing too cramped or too much empty space between stages
-The whole pipeline card overflowing the screen width (horizontal scroll)
-Something else entirely (e.g. animation feels off/jerky rather than a layout issue)
-If you can grab a screenshot from your phone (or Chrome DevTools mobile emulator) and paste it here, I can fix the exact problem instead of iterating blind.
-
-devsecops pipeline is vertical and can't see progress flow on mobile
-
-
-Thought for 34s
-Thought for 34s
-Ah — that makes sense now. On mobile I only made the dots change color one at a time, which is a static state flip, not a visible flow. There's no animated line actually filling downward the way the horizontal one fills on desktop. Let me fix that properly — add a real vertical fill line that animates its height in sync with the stages, mirroring the desktop behavior exactly.
-
-
-Viewed a file, edited a file
-Viewed a file, edited a file
-Now the CSS — replace the static per-segment coloring with a real animated fill line:
-
-
-Replace static mobile segment coloring with an animated vertical fill line matching desktop behavior
-Replace static mobile segment coloring with an animated vertical fill line matching desktop behavior
-Now update the JS to drive both fill elements together:
-
-
-Edited a file, read a file
-Edited a file, read a file
-Now the vertical version actually behaves like the desktop one instead of just flipping dot colors:
-
-A dedicated vertical dashed track runs down the left edge, and a solid green fill line grows downward through it over 1.8s each time a stage advances — same easing curve as the desktop horizontal fill
-Both fills (horizontal + vertical) are now driven from the same advance() loop, so they stay in sync regardless of screen size
-CSS display rules cleanly separate which version shows: desktop gets the horizontal line, mobile (≤640px) gets the vertical one — no dead code running invisibly on either
-Re-download all three files (index.html, style.css, script.js) since the fix spans all of them, and drop them into your site/ folder together.
-
-
-Index
-Code · HTML 
-
-Style
-Code · CSS 
-
-Script
-JS 
-
-
-
-
-
-Claude is AI and can make mistakes. Please double-check responses.
-Style · CSS
-  :root{
+:root{
     --bg: #E9EDF3;
     --surface: #ECF0F6;
     --shadow-light: #FFFFFF;
@@ -140,7 +13,7 @@ Style · CSS
     --mono: 'IBM Plex Mono', monospace;
     --sans: 'IBM Plex Sans', sans-serif;
   }
- 
+
   *{ box-sizing: border-box; }
   html{ scroll-behavior: smooth; }
   body{
@@ -151,16 +24,16 @@ Style · CSS
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
- 
+
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
   }
- 
+
   a{ color: inherit; text-decoration: none; }
   ::selection{ background: var(--accent-soft); color: var(--accent); }
- 
+
   .wrap{ max-width: 1080px; margin: 0 auto; padding: 0 32px; }
- 
+
   .neu{
     background: var(--surface);
     border-radius: var(--radius);
@@ -169,9 +42,9 @@ Style · CSS
   .neu-pressable{ transition: box-shadow 180ms ease, transform 180ms ease; }
   .neu-pressable:hover{ box-shadow: 5px 5px 12px var(--shadow-dark), -5px -5px 12px var(--shadow-light); transform: translateY(1px); }
   .neu-pressable:active{ box-shadow: inset 3px 3px 8px var(--shadow-dark), inset -3px -3px 8px var(--shadow-light); transform: translateY(2px); }
- 
+
   a:focus-visible, button:focus-visible{ outline: 2px solid var(--accent-alt); outline-offset: 3px; border-radius: 8px; }
- 
+
   header{
     position: sticky; top: 0; z-index: 50;
     backdrop-filter: blur(10px);
@@ -185,7 +58,7 @@ Style · CSS
   .navlinks{ display:flex; gap: 28px; font-size: 14px; color: var(--text-muted); }
   .navlinks a:hover{ color: var(--accent); }
   @media (max-width: 720px){ .navlinks{ display:none; } }
- 
+
   .hero{ padding: 88px 0 48px; }
   .eyebrow{
     display:inline-flex; align-items:center; gap:10px;
@@ -215,13 +88,13 @@ Style · CSS
   .btn-ghost{ color: var(--text); }
   .contact-inline{ font-family: var(--mono); font-size: 13px; color: var(--text-muted); display:flex; gap:18px; flex-wrap:wrap; }
   .contact-inline a:hover{ color: var(--accent); }
- 
+
   .stats-strip{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 18px; padding: 8px 0 64px; }
   @media (max-width: 720px){ .stats-strip{ grid-template-columns: repeat(2, 1fr); } }
   .stat-tile{ padding: 24px 20px; text-align:center; }
   .stat-tile .value{ font-family: var(--mono); font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--accent); font-weight: 600; display:block; }
   .stat-tile .label{ font-size: 12.5px; color: var(--text-muted); margin-top: 6px; display:block; }
- 
+
   .pipeline-section{ padding: 0 0 76px; }
   .pipeline-card{ padding: 40px 36px; }
   .pipeline-label{ font-family: var(--mono); font-size: 12px; color: var(--text-muted); letter-spacing: 0.08em; margin-bottom: 28px; display:flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
@@ -249,7 +122,7 @@ Style · CSS
   .stage-label{ font-size: 13px; color: var(--text-muted); font-weight: 500; }
   .stage.active .stage-label{ color: var(--text); }
   .pipeline-line-vertical, .pipeline-line-fill-vertical{ display: none; }
- 
+
   @media (max-width: 640px){
     .pipeline-card{ padding: 26px 20px; }
     .pipeline-label{ flex-direction: column; align-items: flex-start; gap: 4px; margin-bottom: 8px; }
@@ -278,12 +151,12 @@ Style · CSS
     .stage-node{ width: 44px; height: 44px; flex-shrink: 0; font-size: 11px; }
     .stage-label{ font-size: 14.5px; }
   }
- 
+
   section{ padding: 64px 0; }
   .section-head{ margin-bottom: 40px; }
   .section-head .tag{ font-family: var(--mono); font-size: 12.5px; color: var(--accent-alt); letter-spacing: 0.06em; display:block; margin-bottom: 10px; }
   .section-head h2{ font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0; letter-spacing: -0.01em; }
- 
+
   .grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
   @media (max-width: 720px){ .grid{ grid-template-columns: 1fr; } }
   .card{ padding: 28px; display:flex; flex-direction: column; gap: 12px; }
@@ -292,7 +165,7 @@ Style · CSS
   .stack-row{ display:flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
   .chip{ font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); padding: 5px 10px; border-radius: 8px; background: var(--surface); box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light); }
   .chip.primary{ color: var(--accent); box-shadow: none; background: var(--accent-soft); font-weight: 500; }
- 
+
   .timeline{ display:flex; flex-direction:column; gap: 22px; }
   .tl-item{ padding: 28px 30px; }
   .tl-head{ display:flex; justify-content: space-between; align-items:flex-start; flex-wrap:wrap; gap: 10px; margin-bottom: 6px; }
@@ -306,7 +179,7 @@ Style · CSS
   .tl-list li::marker{ color: var(--accent); }
   .tl-toggle{ font-family: var(--mono); font-size: 12px; color: var(--accent-alt); background:none; border:none; cursor:pointer; padding: 12px 0 0; }
   .tl-list.collapsed li:nth-child(n+4){ display:none; }
- 
+
   .about-layout{ display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: start; }
   @media (max-width: 800px){ .about-layout{ grid-template-columns: 1fr; } }
   .about-layout p{ font-size: 16.5px; line-height: 1.75; color: var(--text-muted); margin: 0 0 18px; }
@@ -315,20 +188,19 @@ Style · CSS
   .strengths li{ display:flex; gap: 10px; font-size: 14.5px; color: var(--text-muted); line-height: 1.5; }
   .strengths li::before{ content: '✓'; color: var(--accent); font-weight: 700; flex-shrink:0; }
   .edu-note{ font-family: var(--mono); font-size: 12.5px; color: var(--text-muted); margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
- 
+
   .skills-panel{ padding: 28px; }
   .skill-group{ margin-bottom: 20px; }
   .skill-group:last-child{ margin-bottom: 0; }
   .skill-group h4{ font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); letter-spacing: 0.06em; margin: 0 0 12px; text-transform: uppercase; }
   .skill-tags{ display:flex; flex-wrap: wrap; gap: 8px; }
- 
+
   .contact-card{ padding: 56px 40px; text-align:center; }
   .contact-card h2{ font-size: clamp(1.7rem, 3.6vw, 2.4rem); margin: 0 0 14px; letter-spacing: -0.02em; }
   .contact-card p{ color: var(--text-muted); font-size: 16px; margin: 0 0 32px; }
   .contact-row{ display:flex; justify-content:center; gap: 16px; flex-wrap: wrap; }
   .contact-pill{ display:flex; align-items:center; gap: 10px; padding: 16px 24px; font-family: var(--mono); font-size: 14px; }
- 
+
   footer{ padding: 36px 0 60px; text-align:center; }
   footer p{ font-family: var(--mono); font-size: 12px; color: var(--text-muted); }
   footer .rendered-uptime{ color: var(--accent); }
- 
