@@ -1,6 +1,11 @@
 // Place your CV file at assets/Rahul-Venkatesh-CV.pdf — the download buttons
   // in index.html link directly to it, no JS needed for that part.
 
+  function safeRun(label, fn){
+    try{ fn(); }
+    catch(err){ console.error(`[portfolio] "${label}" failed:`, err); }
+  }
+
   const expertise = [
     { category: "CI/CD & Automation", title: "Pipeline Design & Reusable Frameworks", tags: [
       {label:"Azure DevOps",primary:true},{label:"GitHub Actions",primary:true},{label:"Harness",primary:true},
@@ -113,76 +118,88 @@
 
   const chip = (t) => `<span class="chip${t.primary ? ' primary' : ''}">${t.label}</span>`;
 
-  document.getElementById('expertiseGrid').innerHTML = expertise.map(e => `
-    <div class="card neu">
-      <div class="card-top">
-        <span class="cat">${e.category}</span>
-        <h3>${e.title}</h3>
-      </div>
-      <div class="stack-row">${e.tags.map(chip).join('')}</div>
-    </div>
-  `).join('');
-
-  document.getElementById('timeline').innerHTML = experience.map((job, i) => `
-    <div class="tl-item neu">
-      <div class="tl-head">
-        <div>
-          <span class="tl-role">${job.role}</span>
-          ${job.current ? '<span class="tl-current">CURRENT</span>' : ''}
+  safeRun('expertise grid', () => {
+    document.getElementById('expertiseGrid').innerHTML = expertise.map(e => `
+      <div class="card neu">
+        <div class="card-top">
+          <span class="cat">${e.category}</span>
+          <h3>${e.title}</h3>
         </div>
-        <span class="tl-period">${job.period}</span>
+        <div class="stack-row">${e.tags.map(chip).join('')}</div>
       </div>
-      <div class="tl-meta"><span class="company">${job.company}</span> · ${job.client}</div>
-      <div class="tl-env">${job.environment}</div>
-      <ul class="tl-list collapsed" id="tl-list-${i}">
-        ${job.responsibilities.map(r => `<li>${r}</li>`).join('')}
-      </ul>
-      ${job.responsibilities.length > 3 ? `<button class="tl-toggle" data-target="tl-list-${i}">show all ${job.responsibilities.length} →</button>` : ''}
-    </div>
-  `).join('');
+    `).join('');
+  });
 
-  document.querySelectorAll('.tl-toggle').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const list = document.getElementById(btn.dataset.target);
-      const isCollapsed = list.classList.toggle('collapsed');
-      btn.textContent = isCollapsed ? `show all ${list.children.length} →` : 'show less ↑';
+  safeRun('experience timeline', () => {
+    document.getElementById('timeline').innerHTML = experience.map((job, i) => `
+      <div class="tl-item neu">
+        <div class="tl-head">
+          <div>
+            <span class="tl-role">${job.role}</span>
+            ${job.current ? '<span class="tl-current">CURRENT</span>' : ''}
+          </div>
+          <span class="tl-period">${job.period}</span>
+        </div>
+        <div class="tl-meta"><span class="company">${job.company}</span> · ${job.client}</div>
+        <div class="tl-env">${job.environment}</div>
+        <ul class="tl-list collapsed" id="tl-list-${i}">
+          ${job.responsibilities.map(r => `<li>${r}</li>`).join('')}
+        </ul>
+        ${job.responsibilities.length > 3 ? `<button class="tl-toggle" data-target="tl-list-${i}">show all ${job.responsibilities.length} →</button>` : ''}
+      </div>
+    `).join('');
+
+    document.querySelectorAll('.tl-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const list = document.getElementById(btn.dataset.target);
+        const isCollapsed = list.classList.toggle('collapsed');
+        btn.textContent = isCollapsed ? `show all ${list.children.length} →` : 'show less ↑';
+      });
     });
   });
 
-  document.getElementById('skillsPanel').innerHTML = skills.map(g => `
-    <div class="skill-group">
-      <h4>${g.category}</h4>
-      <div class="skill-tags">${g.items.map(chip).join('')}</div>
-    </div>
-  `).join('');
+  safeRun('skills panel', () => {
+    document.getElementById('skillsPanel').innerHTML = skills.map(g => `
+      <div class="skill-group">
+        <h4>${g.category}</h4>
+        <div class="skill-tags">${g.items.map(chip).join('')}</div>
+      </div>
+    `).join('');
+  });
 
-  const stages = document.querySelectorAll('.stage');
-  const fill = document.getElementById('pipelineFill');
-  const fillVertical = document.getElementById('pipelineFillVertical');
-  const widths = [0, 33, 66, 100];
-  let current = 0;
+  safeRun('pipeline animation', () => {
+    const stages = document.querySelectorAll('.stage');
+    const fill = document.getElementById('pipelineFill');
+    const fillVertical = document.getElementById('pipelineFillVertical');
+    const widths = [0, 33, 66, 100];
+    let current = 0;
 
-  function advance(){
-    stages.forEach((s, i) => s.classList.toggle('active', i <= current));
-    if(fill) fill.style.width = widths[current] + '%';
-    if(fillVertical) fillVertical.style.height = widths[current] + '%';
-    current = (current + 1) % stages.length;
-  }
-  advance();
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(!reduceMotion){ setInterval(advance, 2200); } else { current = stages.length - 1; advance(); }
+    function advance(){
+      stages.forEach((s, i) => s.classList.toggle('active', i <= current));
+      if(fill) fill.style.width = widths[current] + '%';
+      if(fillVertical) fillVertical.style.height = widths[current] + '%';
+      current = (current + 1) % stages.length;
+    }
+    advance();
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduceMotion){ setInterval(advance, 2200); } else { current = stages.length - 1; advance(); }
+  });
 
-  const start = Date.now();
-  const counterEl = document.getElementById('uptimeCounter');
-  function pad(n){ return n.toString().padStart(2,'0'); }
-  function tick(){
-    const diff = Math.floor((Date.now() - start) / 1000);
-    const h = pad(Math.floor(diff/3600));
-    const m = pad(Math.floor((diff%3600)/60));
-    const s = pad(diff%60);
-    if(counterEl) counterEl.textContent = `uptime ${h}:${m}:${s}`;
-  }
-  setInterval(tick, 1000);
-  tick();
+  safeRun('uptime counter', () => {
+    const start = Date.now();
+    const counterEl = document.getElementById('uptimeCounter');
+    function pad(n){ return n.toString().padStart(2,'0'); }
+    function tick(){
+      const diff = Math.floor((Date.now() - start) / 1000);
+      const h = pad(Math.floor(diff/3600));
+      const m = pad(Math.floor((diff%3600)/60));
+      const s = pad(diff%60);
+      if(counterEl) counterEl.textContent = `uptime ${h}:${m}:${s}`;
+    }
+    setInterval(tick, 1000);
+    tick();
+  });
 
-  document.getElementById('renderTime').textContent = new Date().toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric' });
+  safeRun('render date', () => {
+    document.getElementById('renderTime').textContent = new Date().toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric' });
+  });
