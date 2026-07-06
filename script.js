@@ -1,133 +1,6 @@
-
-Claude finished the response
-split the js and html also add a provision to add my cv download'
-
-
-Viewed 2 files, ran a command
-Viewed 2 files, ran a command
-Now let me add a CV download provision and wire the new file structure into index.html.
-
-
-Orchestrated HTML-JS separation and integrated CV download functionality
-Orchestrated HTML-JS separation and integrated CV download functionality
-Files look clean. Let me remove the old single-file version so there's one clear source of truth, and share the split project.
-
-
-Ran a command, read a file
-Ran a command, read a file
-Split into three files, plus a CV download provision:
-
-index.html — markup only, links to style.css and script.js
-style.css — all styling
-script.js — data (expertise/experience/skills arrays) + render logic + animations
-assets/README.txt — a note on where to drop your CV
-CV download: two "Download CV" buttons now exist — one in the hero, one in the contact section — both pointing to assets/Rahul-Venkatesh-CV.pdf with the download attribute. They won't 404 for the visitor unless a file is actually missing at deploy time, so just:
-
-Export your CV as a PDF
-Name it exactly Rahul-Venkatesh-CV.pdf
-Drop it in the assets/ folder next to index.html
-That's it — no code changes needed once the file's in place. When you deploy (GitHub Pages, Netlify, etc.), just make sure you upload the whole site/ folder, not just index.html, so the CSS, JS, and assets folder come along with it.
-
-
-Index
-Code · HTML 
-
-Style
-Code · CSS 
-
-Script
-JS 
-
-Readme
-TXT 
-devsecops pipeline animation piece is not looking good on mobile
-
-
-Check the current mobile pipeline styles before editing
-Check the current mobile pipeline styles before editing
-Found it — on mobile the stages just stack with no connector, so it reads as four floating pills rather than a pipeline. Let me give it a proper vertical timeline with a dashed connector, sized to fit small screens.
-
-
-Replace the weak mobile pipeline fallback with a proper vertical timeline with connecting line
-Replace the weak mobile pipeline fallback with a proper vertical timeline with connecting line
-Now let's confirm the JS still applies .active correctly to these stages (it targets .stage by class, so it'll work unchanged), and view the result.
-
-
-Ran 2 commands, read a file
-Ran 2 commands, read a file
-Fixed. On mobile, the pipeline now renders as a proper vertical timeline instead of four disconnected pills:
-
-Dashed connector runs down the left side linking each stage node, mirroring the horizontal dashed line on desktop
-Connector segments turn solid green as each stage activates, same logic as the desktop fill — just re-oriented
-Nodes shrink to 44px and the card padding tightens so it doesn't feel cramped on narrow screens
-Label text stays left-aligned next to its node, so it reads top-to-bottom like a real pipeline log rather than a stack of centered chips
-No changes needed in script.js — it just toggles .active on .stage elements, and the CSS handles the rest per breakpoint. Re-download style.css (linked above) and drop it back into your site/ folder.
-
-
-Style
-Code · CSS 
-devsecops pipeline animation piece is not looking good on mobile
-
-
-Thought for 4s
-Thought for 4s
-Since I can't preview it on an actual device, guessing again risks missing the real issue. Could you tell me more specifically what's wrong — or better, share a screenshot?
-
-A few things it could be:
-
-Text/labels overlapping the connector line
-Circles too small/large or misaligned with the dashed line
-Spacing too cramped or too much empty space between stages
-The whole pipeline card overflowing the screen width (horizontal scroll)
-Something else entirely (e.g. animation feels off/jerky rather than a layout issue)
-If you can grab a screenshot from your phone (or Chrome DevTools mobile emulator) and paste it here, I can fix the exact problem instead of iterating blind.
-
-devsecops pipeline is vertical and can't see progress flow on mobile
-
-
-Thought for 34s
-Thought for 34s
-Ah — that makes sense now. On mobile I only made the dots change color one at a time, which is a static state flip, not a visible flow. There's no animated line actually filling downward the way the horizontal one fills on desktop. Let me fix that properly — add a real vertical fill line that animates its height in sync with the stages, mirroring the desktop behavior exactly.
-
-
-Viewed a file, edited a file
-Viewed a file, edited a file
-Now the CSS — replace the static per-segment coloring with a real animated fill line:
-
-
-Replace static mobile segment coloring with an animated vertical fill line matching desktop behavior
-Replace static mobile segment coloring with an animated vertical fill line matching desktop behavior
-Now update the JS to drive both fill elements together:
-
-
-Edited a file, read a file
-Edited a file, read a file
-Now the vertical version actually behaves like the desktop one instead of just flipping dot colors:
-
-A dedicated vertical dashed track runs down the left edge, and a solid green fill line grows downward through it over 1.8s each time a stage advances — same easing curve as the desktop horizontal fill
-Both fills (horizontal + vertical) are now driven from the same advance() loop, so they stay in sync regardless of screen size
-CSS display rules cleanly separate which version shows: desktop gets the horizontal line, mobile (≤640px) gets the vertical one — no dead code running invisibly on either
-Re-download all three files (index.html, style.css, script.js) since the fix spans all of them, and drop them into your site/ folder together.
-
-
-Index
-Code · HTML 
-
-Style
-Code · CSS 
-
-Script
-JS 
-
-
-
-
-
-Claude is AI and can make mistakes. Please double-check responses.
-Script · JS
-  // Place your CV file at assets/Rahul-Venkatesh-CV.pdf — the download buttons
+// Place your CV file at assets/Rahul-Venkatesh-CV.pdf — the download buttons
   // in index.html link directly to it, no JS needed for that part.
- 
+
   const expertise = [
     { category: "CI/CD & Automation", title: "Pipeline Design & Reusable Frameworks", tags: [
       {label:"Azure DevOps",primary:true},{label:"GitHub Actions",primary:true},{label:"Harness",primary:true},
@@ -155,7 +28,7 @@ Script · JS
       {label:"Azure Repos",primary:false},{label:"VS Code",primary:false},{label:"Backstage",primary:false}
     ]}
   ];
- 
+
   const experience = [
     { period:"Jun 2023 – Sep 2025", company:"Infosys Limited", client:"Client: State Street", current:true,
       role:"Senior Associate Consultant — DevSecOps & Infra Engineer", environment:"GitHub · Azure DevOps · Harness · Azure",
@@ -211,7 +84,7 @@ Script · JS
         "Integrated Release Note Report Generation for applications."
       ]}
   ];
- 
+
   const skills = [
     { category:"Cloud Technologies", items:[
       {label:"Azure DevOps",primary:true},{label:"Microsoft Azure",primary:true},{label:"AKS",primary:false},
@@ -237,9 +110,9 @@ Script · JS
       {label:"VS Code",primary:true},{label:"Visual Studio",primary:true},{label:"GitHub Copilot",primary:false},{label:"Backstage",primary:false}
     ]}
   ];
- 
+
   const chip = (t) => `<span class="chip${t.primary ? ' primary' : ''}">${t.label}</span>`;
- 
+
   document.getElementById('expertiseGrid').innerHTML = expertise.map(e => `
     <div class="card neu">
       <div class="card-top">
@@ -249,7 +122,7 @@ Script · JS
       <div class="stack-row">${e.tags.map(chip).join('')}</div>
     </div>
   `).join('');
- 
+
   document.getElementById('timeline').innerHTML = experience.map((job, i) => `
     <div class="tl-item neu">
       <div class="tl-head">
@@ -267,7 +140,7 @@ Script · JS
       ${job.responsibilities.length > 3 ? `<button class="tl-toggle" data-target="tl-list-${i}">show all ${job.responsibilities.length} →</button>` : ''}
     </div>
   `).join('');
- 
+
   document.querySelectorAll('.tl-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
       const list = document.getElementById(btn.dataset.target);
@@ -275,20 +148,20 @@ Script · JS
       btn.textContent = isCollapsed ? `show all ${list.children.length} →` : 'show less ↑';
     });
   });
- 
+
   document.getElementById('skillsPanel').innerHTML = skills.map(g => `
     <div class="skill-group">
       <h4>${g.category}</h4>
       <div class="skill-tags">${g.items.map(chip).join('')}</div>
     </div>
   `).join('');
- 
+
   const stages = document.querySelectorAll('.stage');
   const fill = document.getElementById('pipelineFill');
   const fillVertical = document.getElementById('pipelineFillVertical');
   const widths = [0, 33, 66, 100];
   let current = 0;
- 
+
   function advance(){
     stages.forEach((s, i) => s.classList.toggle('active', i <= current));
     if(fill) fill.style.width = widths[current] + '%';
@@ -298,7 +171,7 @@ Script · JS
   advance();
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(!reduceMotion){ setInterval(advance, 2200); } else { current = stages.length - 1; advance(); }
- 
+
   const start = Date.now();
   const counterEl = document.getElementById('uptimeCounter');
   function pad(n){ return n.toString().padStart(2,'0'); }
@@ -311,6 +184,5 @@ Script · JS
   }
   setInterval(tick, 1000);
   tick();
- 
+
   document.getElementById('renderTime').textContent = new Date().toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric' });
- 
